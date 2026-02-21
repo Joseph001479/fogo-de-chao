@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Fogo de Chão | Churrascaria Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -29,13 +29,79 @@
 
         /* ANIMAÇÕES */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ANIMAÇÃO DE ENTRADA PARA TODOS OS ELEMENTOS */
+        .hero-content {
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .hero-content h1 {
+            animation: fadeInScale 1s ease forwards;
+        }
+
+        .hero-content p {
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .section-title {
+            animation: fadeInScale 1s ease forwards;
+        }
+
+        .menu-card {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .menu-card:nth-child(1) { animation-delay: 0.1s; }
+        .menu-card:nth-child(2) { animation-delay: 0.2s; }
+        .menu-card:nth-child(3) { animation-delay: 0.3s; }
+        .menu-card:nth-child(4) { animation-delay: 0.4s; }
+        .menu-card:nth-child(5) { animation-delay: 0.5s; }
+        .menu-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .gallery-item {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .about-content {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .about-image {
+            animation: fadeInScale 1s ease 0.3s both;
+        }
+
+        .contact-info {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .map {
+            animation: fadeInScale 1s ease 0.3s both;
+        }
+
+        .footer-content {
+            animation: fadeIn 1s ease 0.5s both;
         }
 
         /* SCROLLBAR PERSONALIZADA */
@@ -52,13 +118,60 @@
             border-radius: 4px;
         }
 
+        /* PRELOADER (CARREGAMENTO INICIAL) */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        .preloader-content i {
+            font-size: 4rem;
+            color: #c9a45b;
+            margin-bottom: 20px;
+        }
+
+        .preloader-content h2 {
+            color: #c9a45b;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .preloader-content p {
+            color: #999;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         /* HEADER PREMIUM */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 60px;
+            padding: 15px 20px;
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
@@ -66,40 +179,26 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(201, 164, 91, 0.2);
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #c9a45b;
             letter-spacing: 2px;
         }
 
         .logo span {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             color: #fff;
             display: block;
             letter-spacing: 3px;
         }
 
         .nav-menu {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #c9a45b;
+            display: none;
         }
 
         /* CARRINHO HEADER */
@@ -137,34 +236,31 @@
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero-content {
-            animation: fadeIn 1.5s ease;
+            padding: 0 20px;
         }
 
         .hero-content h1 {
-            font-size: 5rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
+            font-size: 1rem;
+            letter-spacing: 2px;
             margin-bottom: 30px;
             color: #c9a45b;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
         .btn {
-            padding: 15px 40px;
+            padding: 15px 30px;
             border: none;
             font-size: 0.9rem;
             font-weight: 600;
@@ -172,6 +268,9 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
         }
 
         .btn-primary {
@@ -199,12 +298,12 @@
 
         /* SEÇÕES */
         section {
-            padding: 100px 60px;
+            padding: 60px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 20px;
             color: #c9a45b;
         }
@@ -222,28 +321,32 @@
             text-align: center;
             color: #999;
             max-width: 600px;
-            margin: 0 auto 60px;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            margin: 0 auto 40px;
+            font-size: 1rem;
+            line-height: 1.6;
+            padding: 0 15px;
         }
 
-        /* CARDÁPIO PREMIUM */
+        /* CARDÁPIO */
         .menu-filters {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
+            gap: 10px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
+            justify-content: center;
+            padding: 0 10px;
         }
 
         .filter-btn {
-            padding: 12px 30px;
+            padding: 10px 20px;
             background: transparent;
             border: 1px solid #c9a45b;
             color: #fff;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 0.9rem;
+            flex: 0 1 auto;
         }
 
         .filter-btn.active,
@@ -254,10 +357,9 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 0 10px;
         }
 
         .menu-card {
@@ -265,16 +367,24 @@
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s;
-            animation: fadeIn 0.5s ease;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
         }
 
         .menu-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(201, 164, 91, 0.2);
         }
 
+        .menu-card:nth-child(1) { animation-delay: 0.1s; }
+        .menu-card:nth-child(2) { animation-delay: 0.2s; }
+        .menu-card:nth-child(3) { animation-delay: 0.3s; }
+        .menu-card:nth-child(4) { animation-delay: 0.4s; }
+        .menu-card:nth-child(5) { animation-delay: 0.5s; }
+        .menu-card:nth-child(6) { animation-delay: 0.6s; }
+
         .menu-image {
-            height: 200px;
+            height: 180px;
             overflow: hidden;
         }
 
@@ -290,7 +400,7 @@
         }
 
         .menu-info {
-            padding: 20px;
+            padding: 15px;
         }
 
         .menu-header {
@@ -301,31 +411,26 @@
         }
 
         .menu-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
         }
 
         .menu-price {
             color: #c9a45b;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .menu-description {
             color: #999;
             font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.5;
             margin-bottom: 15px;
         }
 
-        .menu-actions {
-            display: flex;
-            gap: 10px;
-        }
-
         .btn-add {
-            flex: 1;
-            padding: 10px;
+            width: 100%;
+            padding: 12px;
             background: transparent;
             border: 1px solid #c9a45b;
             color: #c9a45b;
@@ -335,6 +440,7 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
+            font-size: 0.9rem;
         }
 
         .btn-add:hover {
@@ -342,17 +448,16 @@
             color: #0a0a0a;
         }
 
-        /* CARRINHO LATERAL PREMIUM */
+        /* CARRINHO LATERAL */
         .cart-sidebar {
             position: fixed;
             top: 0;
-            right: -500px;
-            width: 500px;
+            right: -100%;
+            width: 100%;
             height: 100vh;
             background: #1a1a1a;
             z-index: 2000;
             transition: right 0.3s ease;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             border-left: 1px solid #c9a45b40;
@@ -363,7 +468,7 @@
         }
 
         .cart-header {
-            padding: 30px;
+            padding: 20px;
             border-bottom: 1px solid #333;
             display: flex;
             justify-content: space-between;
@@ -373,14 +478,14 @@
 
         .cart-header h3 {
             color: #c9a45b;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .close-cart {
             background: none;
             border: none;
             color: #fff;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             cursor: pointer;
             transition: color 0.3s;
         }
@@ -392,23 +497,24 @@
         .cart-items {
             flex: 1;
             overflow-y: auto;
-            padding: 30px;
+            padding: 20px;
         }
 
         .cart-item {
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
             border-bottom: 1px solid #333;
             animation: fadeIn 0.3s ease;
         }
 
         .cart-item-image {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 8px;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .cart-item-image img {
@@ -419,38 +525,43 @@
 
         .cart-item-info {
             flex: 1;
+            min-width: 0;
         }
 
         .cart-item-name {
             font-weight: 600;
             margin-bottom: 5px;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .cart-item-price {
             color: #c9a45b;
-            font-size: 1rem;
-            margin-bottom: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
         }
 
         .cart-item-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .cart-item-qty {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: #0f0f0f;
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 5px;
         }
 
         .qty-btn {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             background: #333;
             border: none;
             color: #fff;
@@ -468,7 +579,7 @@
         .remove-item {
             color: #ff4444;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s;
         }
 
@@ -477,7 +588,7 @@
         }
 
         .cart-footer {
-            padding: 30px;
+            padding: 20px;
             border-top: 1px solid #333;
             background: #0f0f0f;
         }
@@ -485,8 +596,8 @@
         .cart-total {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
             font-weight: 600;
         }
 
@@ -496,20 +607,20 @@
 
         .btn-finalizar {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: #c9a45b;
             border: none;
             color: #0a0a0a;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 10px;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            gap: 8px;
         }
 
         .btn-finalizar:hover {
@@ -526,8 +637,8 @@
             color: #ff4444;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
             border-radius: 8px;
+            transition: all 0.3s;
         }
 
         .btn-limpar:hover {
@@ -551,19 +662,20 @@
             display: block;
         }
 
-        /* MODAL DE CHECKOUT PREMIUM */
+        /* MODAL DE CHECKOUT */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 3000;
-            backdrop-filter: blur(5px);
+            overflow-y: auto;
+            padding: 20px;
         }
 
         .modal-overlay.active {
@@ -572,59 +684,107 @@
 
         .modal {
             background: #1a1a1a;
-            width: 600px;
-            max-width: 95%;
-            border-radius: 20px;
-            padding: 40px;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 24px;
             position: relative;
-            border: 1px solid #c9a45b40;
-            animation: fadeIn 0.3s ease;
+            border: 1px solid rgba(201, 164, 91, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: fadeInScale 0.3s ease;
+            margin: auto;
+        }
+
+        .modal-content {
+            padding: 40px;
         }
 
         .modal-close {
             position: absolute;
             top: 20px;
             right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #999;
-            transition: color 0.3s;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
         }
 
         .modal-close:hover {
-            color: #c9a45b;
+            background: #c9a45b;
+            color: #0a0a0a;
+            border-color: #c9a45b;
         }
 
         .modal-title {
-            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
             color: #c9a45b;
             margin-bottom: 30px;
             text-align: center;
-            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding-right: 40px;
+        }
+
+        /* FORMULÁRIO */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 8px;
+            font-size: 0.95rem;
             font-weight: 500;
             color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: #c9a45b;
+            width: 20px;
+            font-size: 1rem;
+        }
+
+        .required::after {
+            content: '*';
+            color: #ff4444;
+            margin-left: 4px;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 15px;
+            padding: 14px 16px;
             background: #0f0f0f;
             border: 1px solid #333;
+            border-radius: 12px;
             color: #fff;
-            border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
         .form-group input:focus,
@@ -632,44 +792,26 @@
         .form-group textarea:focus {
             border-color: #c9a45b;
             outline: none;
-            box-shadow: 0 0 10px rgba(201, 164, 91, 0.2);
+            box-shadow: 0 0 0 3px rgba(201, 164, 91, 0.1);
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .pagamento-opcoes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .pagamento-opcao {
-            padding: 15px;
-            background: #0f0f0f;
-            border: 1px solid #333;
-            border-radius: 8px;
-            text-align: center;
+        .form-group select {
             cursor: pointer;
-            transition: all 0.3s;
-            color: #fff;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c9a45b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 48px;
         }
 
-        .pagamento-opcao:hover,
-        .pagamento-opcao.selected {
-            border-color: #c9a45b;
-            background: #c9a45b20;
-            color: #c9a45b;
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
-        .pagamento-opcao i {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            color: #c9a45b;
+        #trocoGroup {
+            transition: all 0.3s ease;
         }
 
         .btn-confirmar {
@@ -677,30 +819,37 @@
             padding: 18px;
             background: #c9a45b;
             border: none;
+            border-radius: 12px;
             color: #0a0a0a;
             font-weight: 700;
-            font-size: 1.1rem;
-            border-radius: 8px;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             margin-top: 20px;
+            letter-spacing: 1px;
         }
 
         .btn-confirmar:hover {
             background: #b38f4a;
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(201, 164, 91, 0.3);
+            box-shadow: 0 10px 30px rgba(201, 164, 91, 0.3);
         }
 
         /* MODAL DE SUCESSO */
         .sucesso-modal {
             text-align: center;
+            padding: 40px;
         }
 
         .sucesso-icon {
             font-size: 5rem;
             color: #28a745;
             margin-bottom: 20px;
+            animation: pulse 1s ease;
         }
 
         .numero-pedido {
@@ -712,12 +861,13 @@
         }
 
         .btn-continuar {
-            padding: 15px 40px;
+            width: 100%;
+            padding: 16px;
             background: #c9a45b;
             border: none;
             color: #0a0a0a;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             margin-top: 20px;
             transition: all 0.3s;
@@ -728,29 +878,41 @@
             transform: translateY(-2px);
         }
 
-        /* SEÇÃO SOBRE */
+        /* SOBRE */
         .about {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 30px;
             align-items: center;
             background: #0f0f0f;
+            padding: 60px 20px;
+        }
+
+        .about-content {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .about-image {
+            opacity: 0;
+            animation: fadeInScale 1s ease 0.3s both;
         }
 
         .about-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: #c9a45b;
         }
 
         .about-content p {
             color: #999;
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
 
         .about-image {
-            height: 500px;
+            height: 300px;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -764,16 +926,24 @@
         /* GALERIA */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 0 10px;
         }
 
         .gallery-item {
-            height: 250px;
+            height: 200px;
             overflow: hidden;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
         }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
 
         .gallery-item img {
             width: 100%;
@@ -789,44 +959,59 @@
         /* CONTATO */
         .contact {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 30px;
             background: #0f0f0f;
+            padding: 60px 20px;
+        }
+
+        .contact-info {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .map {
+            opacity: 0;
+            animation: fadeInScale 1s ease 0.3s both;
         }
 
         .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             color: #c9a45b;
         }
 
         .contact-detail {
             display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: #c9a45b;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #0a0a0a;
+            flex-shrink: 0;
         }
 
         .contact-text h4 {
             margin-bottom: 5px;
+            font-size: 1rem;
         }
 
         .contact-text p {
             color: #999;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .map {
-            height: 400px;
+            height: 300px;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -840,33 +1025,37 @@
         /* RODAPÉ */
         footer {
             background: #0a0a0a;
-            padding: 60px 60px 20px;
+            padding: 40px 20px 20px;
             border-top: 1px solid #c9a45b20;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s both;
         }
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #c9a45b;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .footer-about p {
             color: #999;
-            line-height: 1.8;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 15px;
+            justify-content: center;
         }
 
         .social-links a {
@@ -889,7 +1078,8 @@
 
         .footer-links h4 {
             color: #c9a45b;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
 
         .footer-links ul {
@@ -897,17 +1087,45 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .footer-links a {
             color: #999;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
         .footer-links a:hover {
             color: #c9a45b;
+        }
+
+        .footer-about input {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #c9a45b;
+            color: #fff;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .footer-about button {
+            width: 100%;
+            padding: 12px;
+            background: #c9a45b;
+            border: none;
+            color: #0a0a0a;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .footer-about button:hover {
+            background: #b38f4a;
         }
 
         .footer-bottom {
@@ -915,63 +1133,211 @@
             padding-top: 20px;
             border-top: 1px solid #333;
             color: #999;
+            font-size: 0.9rem;
         }
 
-        /* WHATSAPP FIXO (opcional, pode remover se quiser) */
+        /* WHATSAPP FLOAT */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
             background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-decoration: none;
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
             z-index: 1000;
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        /* TABLET */
+        @media (min-width: 768px) {
+            header {
+                padding: 20px 40px;
+            }
 
-        /* RESPONSIVO */
-        @media (max-width: 1200px) {
-            section { padding: 80px 30px; }
-            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-        }
+            .logo {
+                font-size: 1.8rem;
+            }
 
-        @media (max-width: 992px) {
-            header { padding: 20px 30px; }
-            .nav-menu { display: none; }
-            .hero-content h1 { font-size: 3.5rem; }
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .btn {
+                width: auto;
+            }
+
+            section {
+                padding: 80px 40px;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .about,
-            .contact { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-content { grid-template-columns: 1fr 1fr; }
-            .cart-sidebar { width: 100%; right: -100%; }
+            .contact {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cart-sidebar {
+                width: 450px;
+                right: -450px;
+            }
         }
 
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-buttons { flex-direction: column; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .pagamento-opcoes { grid-template-columns: 1fr; }
+        /* DESKTOP */
+        @media (min-width: 1024px) {
+            header {
+                padding: 20px 60px;
+            }
+
+            .nav-menu {
+                display: flex;
+                gap: 40px;
+                list-style: none;
+            }
+
+            .nav-menu a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                letter-spacing: 1px;
+            }
+
+            .nav-menu a:hover {
+                color: #c9a45b;
+            }
+
+            .hero-content h1 {
+                font-size: 5rem;
+            }
+
+            section {
+                padding: 100px 60px;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            }
+
+            .modal {
+                max-width: 800px;
+            }
+
+            .modal-content {
+                padding: 50px;
+            }
+        }
+
+        /* CELULAR PEQUENO */
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .btn-confirmar {
+                padding: 16px;
+                font-size: 1.1rem;
+            }
+
+            .sucesso-modal {
+                padding: 30px 20px;
+            }
+
+            .numero-pedido {
+                font-size: 2rem;
+            }
+        }
+
+        /* MELHORIAS DE TOQUE */
+        button, 
+        .btn,
+        .filter-btn,
+        .btn-add,
+        .qty-btn,
+        .modal-close,
+        .cart-icon,
+        .footer-about button {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:active,
+        .btn:active,
+        .filter-btn:active,
+        .btn-add:active {
+            opacity: 0.8;
+            transform: scale(0.98);
+        }
+
+        /* SCROLL SUAVE */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
+    <!-- PRELOADER (CARREGAMENTO) -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <i class="fas fa-utensils"></i>
+            <h2>FOGO DE CHÃO</h2>
+            <p>Carregando experiência premium...</p>
+        </div>
+    </div>
+
     <!-- HEADER -->
     <header>
         <div class="logo">FOGO DE CHÃO<span>CHURRASCARIA PREMIUM</span></div>
@@ -999,7 +1365,7 @@
         </div>
         
         <div class="cart-items" id="cartItems">
-            <!-- Itens do carrinho serão inseridos aqui -->
+            <!-- Itens do carrinho serão inseridos aqui via JavaScript -->
         </div>
         
         <div class="cart-footer">
@@ -1021,77 +1387,113 @@
     <!-- MODAL DE CHECKOUT -->
     <div class="modal-overlay" id="modalCheckout">
         <div class="modal">
-            <span class="modal-close" onclick="fecharCheckout()">&times;</span>
-            <h2 class="modal-title">FINALIZAR PEDIDO</h2>
+            <div class="modal-close" onclick="fecharCheckout()">
+                <i class="fas fa-times"></i>
+            </div>
+            
+            <div class="modal-content">
+                <h2 class="modal-title">FINALIZAR PEDIDO</h2>
 
-            <form id="formPedido" onsubmit="processarPedido(event)">
-                <div class="form-group">
-                    <label>Nome completo *</label>
-                    <input type="text" id="nomeCliente" required placeholder="Digite seu nome">
-                </div>
+                <form id="formPedido" onsubmit="processarPedido(event)">
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-user"></i>
+                                <span>Nome completo <span class="required"></span></span>
+                            </label>
+                            <input type="text" id="nomeCliente" required placeholder="Digite seu nome completo">
+                        </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Telefone *</label>
-                        <input type="tel" id="telefone" required placeholder="(11) 99999-9999">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-phone-alt"></i>
+                                    <span>Telefone <span class="required"></span></span>
+                                </label>
+                                <input type="tel" id="telefone" required placeholder="(11) 99999-9999">
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-envelope"></i>
+                                    <span>E-mail</span>
+                                </label>
+                                <input type="email" id="email" placeholder="seu@email.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Endereço de entrega <span class="required"></span></span>
+                            </label>
+                            <input type="text" id="endereco" required placeholder="Rua, número, bairro">
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-home"></i>
+                                <span>Complemento</span>
+                            </label>
+                            <input type="text" id="complemento" placeholder="Apto, Bloco, referência">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Forma de pagamento <span class="required"></span></span>
+                                </label>
+                                <select id="pagamento" required>
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="Dinheiro">💵 Dinheiro</option>
+                                    <option value="Cartão de Crédito">💳 Cartão de Crédito</option>
+                                    <option value="Cartão de Débito">💳 Cartão de Débito</option>
+                                    <option value="PIX">📱 PIX</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="trocoGroup" style="display: none;">
+                                <label>
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span>Troco para</span>
+                                </label>
+                                <input type="text" id="troco" placeholder="Ex: R$ 200,00">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-comment"></i>
+                                <span>Observações</span>
+                            </label>
+                            <textarea id="observacoes" rows="4" placeholder="Ex: ponto da carne, tirar cebola, sem sal..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-confirmar">
+                            <i class="fas fa-check-circle"></i>
+                            CONFIRMAR PEDIDO
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label>E-mail</label>
-                        <input type="email" id="email" placeholder="seu@email.com">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Endereço de entrega *</label>
-                    <input type="text" id="endereco" required placeholder="Rua, número, bairro">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Complemento</label>
-                        <input type="text" id="complemento" placeholder="Apto, Bloco">
-                    </div>
-                    <div class="form-group">
-                        <label>Forma de pagamento *</label>
-                        <select id="pagamento" required>
-                            <option value="">Selecione...</option>
-                            <option value="Dinheiro">Dinheiro</option>
-                            <option value="Cartão de Crédito">Cartão de Crédito</option>
-                            <option value="Cartão de Débito">Cartão de Débito</option>
-                            <option value="PIX">PIX</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group" id="trocoGroup" style="display: none;">
-                    <label>Troco para (se for dinheiro)</label>
-                    <input type="text" id="troco" placeholder="Ex: 200,00">
-                </div>
-
-                <div class="form-group">
-                    <label>Observações</label>
-                    <textarea id="observacoes" rows="3" placeholder="Alguma observação especial? Ex: ponto da carne, tirar cebola, etc"></textarea>
-                </div>
-
-                <button type="submit" class="btn-confirmar">
-                    <i class="fas fa-check-circle"></i> CONFIRMAR PEDIDO
-                </button>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- MODAL DE SUCESSO -->
     <div class="modal-overlay" id="modalSucesso">
         <div class="modal sucesso-modal">
-            <span class="modal-close" onclick="fecharSucesso()">&times;</span>
+            <div class="modal-close" onclick="fecharSucesso()">
+                <i class="fas fa-times"></i>
+            </div>
             <div class="sucesso-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
             <h2 style="color: #c9a45b;">PEDIDO CONFIRMADO!</h2>
             <p style="color: #999; margin: 20px 0;">Seu pedido foi recebido com sucesso.</p>
             <div class="numero-pedido" id="numeroPedido">#001</div>
-            <p style="color: #999;">Em breve você receberá a confirmação por telefone.</p>
-            <p style="color: #c9a45b; margin-top: 20px;">Tempo estimado: 45-60 minutos</p>
+            <p style="color: #999;">Em breve você receberá a confirmação.</p>
+            <p style="color: #c9a45b; margin-top: 20px;">Tempo estimado: 45-60 min</p>
             <button class="btn-continuar" onclick="fecharSucesso()">
                 CONTINUAR COMPRANDO
             </button>
@@ -1131,13 +1533,13 @@
             <button class="filter-btn active" onclick="filtrarCardapio('todos')">TODOS</button>
             <button class="filter-btn" onclick="filtrarCardapio('carnes')">CARNES</button>
             <button class="filter-btn" onclick="filtrarCardapio('entradas')">ENTRADAS</button>
-            <button class="filter-btn" onclick="filtrarCardapio('acompanhamentos')">ACOMPANHAMENTOS</button>
+            <button class="filter-btn" onclick="filtrarCardapio('acompanhamentos')">ACOMP.</button>
             <button class="filter-btn" onclick="filtrarCardapio('bebidas')">BEBIDAS</button>
             <button class="filter-btn" onclick="filtrarCardapio('sobremesas')">SOBREMESAS</button>
         </div>
 
         <div class="menu-grid" id="menuGrid">
-            <!-- Itens do cardápio serão inseridos aqui -->
+            <!-- Itens do cardápio serão inseridos aqui via JavaScript -->
         </div>
     </section>
 
@@ -1158,18 +1560,6 @@
             </div>
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Vinhos">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Sobremesa">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Externo">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Corte">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Entrada">
             </div>
         </div>
     </section>
@@ -1219,36 +1609,24 @@
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
                 </div>
             </div>
             
             <div class="footer-links">
-                <h4>LINKS RÁPIDOS</h4>
+                <h4>LINKS</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">Sobre</a></li>
                     <li><a href="#menu">Cardápio</a></li>
-                    <li><a href="#gallery">Galeria</a></li>
                     <li><a href="#contact">Contato</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>CARDÁPIO</h4>
-                <ul>
-                    <li><a href="#" onclick="filtrarCardapio('carnes')">Carnes</a></li>
-                    <li><a href="#" onclick="filtrarCardapio('entradas')">Entradas</a></li>
-                    <li><a href="#" onclick="filtrarCardapio('bebidas')">Bebidas</a></li>
-                    <li><a href="#" onclick="filtrarCardapio('sobremesas')">Sobremesas</a></li>
                 </ul>
             </div>
             
             <div class="footer-about">
                 <h4>NEWSLETTER</h4>
-                <p>Receba nossas promoções</p>
-                <input type="email" placeholder="Seu e-mail" style="padding: 10px; width: 100%; margin-top: 10px; background: #1a1a1a; border: 1px solid #c9a45b; color: #fff; border-radius: 5px;">
-                <button style="width: 100%; padding: 10px; margin-top: 10px; background: #c9a45b; border: none; color: #0a0a0a; font-weight: 600; cursor: pointer; border-radius: 5px;">INSCREVER</button>
+                <p>Receba promoções</p>
+                <input type="email" placeholder="Seu e-mail">
+                <button>INSCREVER</button>
             </div>
         </div>
         
@@ -1257,13 +1635,20 @@
         </div>
     </footer>
 
-    <!-- WHATSAPP FIXO (OPCIONAL - COMENTADO) -->
-    <!-- <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+    <!-- WHATSAPP FIXO -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
-    </a> -->
+    </a>
 
     <script>
-        // CARDÁPIO COMPLETO (MESMO DA VERSÃO ANTERIOR)
+        // REMOVER PRELOADER APÓS CARREGAMENTO
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('fade-out');
+            }, 1000);
+        });
+
+        // CARDÁPIO COMPLETO
         const cardapio = {
             carnes: [
                 { id: 1, nome: 'Picanha Nobre', descricao: 'Corte nobre, macio e suculento', preco: 189.90, imagem: 'https://images.unsplash.com/photo-1546964124-0cce460f38ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80', categoria: 'carnes' },
@@ -1292,7 +1677,7 @@
             ]
         };
 
-        // CARRINHO DE COMPRAS
+        // CARRINHO
         let carrinho = [];
         let categoriaAtual = 'todos';
         let ultimoPedido = 100;
@@ -1319,11 +1704,9 @@
                             <span class="menu-price">R$ ${produto.preco.toFixed(2)}</span>
                         </div>
                         <p class="menu-description">${produto.descricao}</p>
-                        <div class="menu-actions">
-                            <button class="btn-add" onclick="adicionarAoCarrinho(${produto.id})">
-                                <i class="fas fa-cart-plus"></i> ADICIONAR
-                            </button>
-                        </div>
+                        <button class="btn-add" onclick="adicionarAoCarrinho(${produto.id})">
+                            <i class="fas fa-cart-plus"></i> ADICIONAR
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -1369,22 +1752,18 @@
             const cartCount = document.getElementById('cartCount');
             const cartTotal = document.getElementById('cartTotal');
             
-            // Atualizar contador
             const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
             cartCount.textContent = totalItens;
             
             if (carrinho.length === 0) {
-                cartItems.innerHTML = '<p style="text-align: center; color: #999; padding: 30px;">Seu carrinho está vazio</p>';
+                cartItems.innerHTML = '<p style="text-align: center; color: #999; padding: 30px;">Carrinho vazio</p>';
                 cartTotal.textContent = 'R$ 0,00';
                 return;
             }
             
-            // Atualizar itens
             cartItems.innerHTML = carrinho.map(item => `
                 <div class="cart-item">
-                    <div class="cart-item-image">
-                        <img src="${item.imagem}" alt="${item.nome}">
-                    </div>
+                    <img src="${item.imagem}" alt="${item.nome}" class="cart-item-image">
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.nome}</div>
                         <div class="cart-item-price">R$ ${item.preco.toFixed(2)}</div>
@@ -1402,7 +1781,6 @@
                 </div>
             `).join('');
             
-            // Atualizar total
             const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
             cartTotal.textContent = `R$ ${total.toFixed(2)}`;
         }
@@ -1427,7 +1805,7 @@
 
         // LIMPAR CARRINHO
         function limparCarrinho() {
-            if (carrinho.length > 0 && confirm('Deseja limpar todo o carrinho?')) {
+            if (carrinho.length > 0 && confirm('Limpar carrinho?')) {
                 carrinho = [];
                 atualizarCarrinho();
             }
@@ -1435,23 +1813,19 @@
 
         // ABRIR/FECHAR CARRINHO
         function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar');
-            const overlay = document.querySelector('.cart-overlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.querySelector('.cart-overlay').classList.toggle('active');
         }
 
         function abrirCarrinho() {
-            const sidebar = document.getElementById('cartSidebar');
-            const overlay = document.querySelector('.cart-overlay');
-            sidebar.classList.add('open');
-            overlay.classList.add('active');
+            document.getElementById('cartSidebar').classList.add('open');
+            document.querySelector('.cart-overlay').classList.add('active');
         }
 
         // CHECKOUT
         function abrirCheckout() {
             if (carrinho.length === 0) {
-                alert('Seu carrinho está vazio!');
+                alert('Carrinho vazio!');
                 return;
             }
             document.getElementById('modalCheckout').classList.add('active');
@@ -1461,13 +1835,19 @@
             document.getElementById('modalCheckout').classList.remove('active');
         }
 
-        // MOSTRAR CAMPO TROCO QUANDO SELECIONAR DINHEIRO
+        function fecharSucesso() {
+            document.getElementById('modalSucesso').classList.remove('active');
+            toggleCart();
+        }
+
+        // MOSTRAR CAMPO TROCO
         document.getElementById('pagamento')?.addEventListener('change', function() {
             const trocoGroup = document.getElementById('trocoGroup');
             if (this.value === 'Dinheiro') {
                 trocoGroup.style.display = 'block';
             } else {
                 trocoGroup.style.display = 'none';
+                document.getElementById('troco').value = '';
             }
         });
 
@@ -1475,25 +1855,27 @@
         function processarPedido(event) {
             event.preventDefault();
             
-            // Validar campos obrigatórios
-            const nome = document.getElementById('nomeCliente').value;
-            const telefone = document.getElementById('telefone').value;
-            const endereco = document.getElementById('endereco').value;
+            const nome = document.getElementById('nomeCliente').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const endereco = document.getElementById('endereco').value.trim();
             const pagamento = document.getElementById('pagamento').value;
             
             if (!nome || !telefone || !endereco || !pagamento) {
-                alert('Preencha todos os campos obrigatórios!');
+                alert('Por favor, preencha todos os campos obrigatórios!');
+                return;
+            }
+
+            if (telefone.replace(/\D/g, '').length < 11) {
+                alert('Telefone inválido! Digite um número com DDD.');
                 return;
             }
             
-            // Gerar número do pedido
             ultimoPedido++;
             const numeroPedido = ultimoPedido.toString().padStart(3, '0');
             
-            // Criar objeto do pedido
             const pedido = {
                 numero: numeroPedido,
-                data: new Date().toLocaleString(),
+                data: new Date().toLocaleString('pt-BR'),
                 cliente: {
                     nome: nome,
                     telefone: telefone,
@@ -1512,39 +1894,30 @@
                     troco: document.getElementById('troco').value
                 },
                 observacoes: document.getElementById('observacoes').value,
-                subtotal: carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0),
                 total: carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0)
             };
             
-            // Salvar no localStorage (simulando banco de dados)
             const pedidosSalvos = JSON.parse(localStorage.getItem('pedidos') || '[]');
             pedidosSalvos.push(pedido);
             localStorage.setItem('pedidos', JSON.stringify(pedidosSalvos));
             
-            // Mostrar modal de sucesso
             document.getElementById('numeroPedido').textContent = `#${numeroPedido}`;
             fecharCheckout();
             document.getElementById('modalSucesso').classList.add('active');
             
-            // Limpar carrinho e formulário
             carrinho = [];
             atualizarCarrinho();
             document.getElementById('formPedido').reset();
             document.getElementById('trocoGroup').style.display = 'none';
         }
 
-        function fecharSucesso() {
-            document.getElementById('modalSucesso').classList.remove('active');
-            toggleCart(); // Fecha o carrinho também
-        }
-
-        // MASCARA TELEFONE
+        // MÁSCARA TELEFONE
         document.getElementById('telefone')?.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length <= 11) {
-                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-                e.target.value = value;
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length <= 11) {
+                v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+                v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+                e.target.value = v;
             }
         });
 
@@ -1559,7 +1932,17 @@
             });
         });
 
-        // INICIALIZAR
+        // FECHAR MODAL COM ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharCheckout();
+                if (document.getElementById('modalSucesso').classList.contains('active')) {
+                    fecharSucesso();
+                }
+            }
+        });
+
+        // INICIAR
         carregarCardapio();
     </script>
 </body>
